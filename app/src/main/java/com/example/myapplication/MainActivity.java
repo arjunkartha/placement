@@ -149,8 +149,15 @@ public class MainActivity extends AppCompatActivity {
                     String documentId = document.getId();
                     String title = document.getString("cname");
                     String description = document.getString("date");
+                    String firstLetter = "";
 
-                    CardItem cardItem = new CardItem(title, description, documentId);
+                    if (title != null && !title.isEmpty()) {
+                        // Check if the title is not empty
+                        firstLetter = title.substring(0, 1);
+                        firstLetter = firstLetter.toUpperCase();
+                    }
+
+                    CardItem cardItem = new CardItem(title, description, documentId, firstLetter);
                     cardItemList.add(cardItem);
                 }
 

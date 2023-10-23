@@ -7,10 +7,8 @@
     android:orientation="vertical"
     tools:context=".AdminHomeActivity">
 
-    <TextView
-        android:id="@+id/textView2"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recylcerViewAdmin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="34dp"/>
+        android:layout_height="match_parent" />
 </LinearLayout>

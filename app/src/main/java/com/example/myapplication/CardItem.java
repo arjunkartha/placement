@@ -6,11 +6,12 @@ public class CardItem {
 
     private String documentId;
 
-    public CardItem(String title, String description, String documentId) {
+    private String firstLetter;
+    public CardItem(String title, String description, String documentId, String firstLetter) {
         this.title = title;
         this.description = description;
         this.documentId = documentId;
-
+        this.firstLetter = firstLetter;
 
     }
 
@@ -23,4 +24,5 @@ public class CardItem {
     }
 
     public String getDocumentId(){return documentId;}
+    public String getFirstLetter(){return firstLetter;}
 }

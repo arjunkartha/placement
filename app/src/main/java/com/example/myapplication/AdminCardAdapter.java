@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -11,13 +12,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
-public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder> {
+public class AdminCardAdapter extends RecyclerView.Adapter<AdminCardAdapter.CardViewHolder> {
 
     private List<CardItem> cardItemList;
     private Context context;
-    public CardAdapter(List<CardItem> cardItemList, Context context) {
+    public AdminCardAdapter(List<CardItem> cardItemList, Context context) {
         this.cardItemList = cardItemList;
         this.context = context;
     }
@@ -35,12 +38,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
         holder.textViewTitle.setText(cardItem.getTitle());
         holder.textViewDescription.setText(cardItem.getDescription());
         holder.textViewAvatar.setText(cardItem.getFirstLetter());
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Start the DetailActivity with the selected card data
-                Intent intent = new Intent(context, DetailActivity.class);
+                Intent intent = new Intent(context, AdminDetailActivity.class);
                 intent.putExtra("title", cardItem.getTitle());
                 intent.putExtra("documentId", cardItem.getDocumentId());
                 intent.putExtra("description", cardItem.getDescription());
@@ -58,7 +60,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
         TextView textViewTitle;
 
         TextView textViewDescription;
-
         TextView textViewAvatar;
 
         public CardViewHolder(View itemView) {

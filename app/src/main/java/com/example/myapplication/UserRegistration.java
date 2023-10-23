@@ -79,6 +79,7 @@ public class UserRegistration extends AppCompatActivity {
                                 // Add user details to Firestore
                                 Map<String, Object> userData = new HashMap<>();
                                 userData.put("name", fullName);
+                                userData.put("role","student");
                                 // Add other details as needed
 
                                 userRef.set(userData)
