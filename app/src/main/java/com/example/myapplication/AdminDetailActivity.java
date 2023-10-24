@@ -30,7 +30,8 @@ import java.util.List;
 public class AdminDetailActivity extends AppCompatActivity {
     String docId = "";
     private FirebaseFirestore db;
-    Button openMenuButton;
+    Button openMenuButton ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

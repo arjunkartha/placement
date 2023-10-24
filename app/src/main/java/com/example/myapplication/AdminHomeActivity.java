@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,6 +28,8 @@ public class AdminHomeActivity extends AppCompatActivity {
     private AdminCardAdapter cardAdapter;
     private List<CardItem> cardItemList;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +45,12 @@ public class AdminHomeActivity extends AppCompatActivity {
         fetchDataFromFirestore();
 
     }
+
+    public void addDrive(View v){
+        Intent addIntent = new Intent(AdminHomeActivity.this, DriveAddActivity.class);
+        startActivity(addIntent);
+    }
+
 
     private void fetchDataFromFirestore() {
         // Check if the user is authenticated
@@ -76,6 +86,7 @@ public class AdminHomeActivity extends AppCompatActivity {
                     String title = document.getString("cname");
                     String description = document.getString("date");
                     String firstLetter = "";
+                    String imageUrl = document.getString("image");
 
                     if (title != null && !title.isEmpty()) {
                         // Check if the title is not empty
@@ -84,7 +95,7 @@ public class AdminHomeActivity extends AppCompatActivity {
                     }
 
 
-                    CardItem cardItem = new CardItem(title, description, documentId ,firstLetter);
+                    CardItem cardItem = new CardItem(title, description, documentId, firstLetter);
                     cardItemList.add(cardItem);
                 }
 
