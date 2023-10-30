@@ -6,15 +6,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ImageSpan;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,11 +57,48 @@ public class MainActivity extends AppCompatActivity {
     private CardAdapter cardAdapter;
     private List<CardItem> cardItemList;
 
+    BottomNavigationView bottomNavigationView;
+
     TextView t1;
+    @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.navigation_home) {
+                // Load the Home fragment or activity
+                loadFragment(new HomeFragment());
+                return true;
+//            } else if (itemId == R.id.navigation_dashboard) {
+//                // Load the Dashboard fragment or activity
+//                loadFragment(new DashboardFragment());
+//                return true;
+            } else if (itemId == R.id.profile) {
+                // Load the Notifications fragment or activity
+                loadFragment(new ProfileFragment());
+                return true;
+            }
+
+            return false;
+        });
+
+
+
+
+
+
+
+
+
+
+
         t1 = findViewById(R.id.userLogged);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -68,6 +112,12 @@ public class MainActivity extends AppCompatActivity {
         fetchDataFromFirestore();
         fetchUserFromFirestore();
 
+    }
+
+    private void loadFragment(Fragment fragment) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .commit();
     }
 
     private void fetchUserFromFirestore(){
@@ -94,8 +144,30 @@ public class MainActivity extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         if (documentSnapshot.exists()) {
                             // User document exists in the "users" collection
+
+                            int width = 48; // Change this to your desired width in pixels
+                            int height = 48;
                             String userName = documentSnapshot.getString("name");
-                            t1.setText(userName);
+                            Drawable drawable = getResources().getDrawable(R.drawable.wave);
+                            drawable.setBounds(0, 0, width, height);
+
+                            String text = "Hi "+userName+"  ";
+// Create a SpannableString
+                            SpannableString spannableString = new SpannableString(text);
+
+                            int length = text.length(); // At the end of the string
+                            int start = length-1;
+                           int end = length;
+
+
+
+// Add an ImageSpan to the SpannableString
+                            ImageSpan imageSpan = new ImageSpan(drawable, ImageSpan.ALIGN_BASELINE);
+                            spannableString.setSpan(imageSpan, start, end, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+
+// Set the SpannableString to your TextView
+                            t1.setText(spannableString);
+//                            t1.setText("Hi "+ userName);
                         } else {
                             // User document does not exist, handle the case
                         }
@@ -124,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
             // You can show a login screen or take appropriate action here
             return;
         }
-        Toast.makeText(getApplicationContext(),String.valueOf(user.getEmail()),Toast.LENGTH_LONG).show();
+//        Toast.makeText(getApplicationContext(),String.valueOf(user.getEmail()),Toast.LENGTH_LONG).show();
         // User is authenticated, proceed with fetching data
         // Initialize Firebase Firestore
         FirebaseFirestore db = FirebaseFirestore.getInstance();

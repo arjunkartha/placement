@@ -1,14 +1,17 @@
 package com.example.myapplication;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
@@ -24,6 +27,8 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.w3c.dom.Text;
+
+import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
     String docId = "";
@@ -85,6 +90,12 @@ public class DetailActivity extends AppCompatActivity {
                                             .into(imageView);
                                 }
 
+                                FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                                if (currentUser != null) {
+                                    String userId = currentUser.getUid();
+                                    checkIfUserApplied(userId, docId);
+                                }
+
 
                             } else {
                                 // Document doesn't exist
@@ -95,10 +106,57 @@ public class DetailActivity extends AppCompatActivity {
                         }
                     }
                 });
+
     }
 
-    public void applyDrive(View v){
-        Toast.makeText(this, docId,Toast.LENGTH_LONG ).show();
+    // Define a method to check if the user has applied for the drive
+    private void checkIfUserApplied(final String userId, final String driveDocumentId) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference userDocumentRef = db.collection("users").document(userId);
+
+        userDocumentRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        // User document exists, check if "applied" array contains the driveDocumentId
+                        if (document.contains("applied")) {
+                            List<String> appliedList = (List<String>) document.get("applied");
+                            if (appliedList != null && appliedList.contains(driveDocumentId)) {
+                                // User has applied, change the button text to "Applied"
+                                Button applyButton = findViewById(R.id.button); // Replace with the ID of your button
+                                applyButton.setText("Applied");
+                                applyButton.setEnabled(false); // Optionally disable the button
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+    public void applyDrive(View v) {
+        new AlertDialog.Builder(this)
+                .setTitle("Apply Confirmation")
+                .setMessage("Are you sure you want to apply for this drive?")
+                .setPositiveButton("Apply", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // User clicked the "Apply" button
+                        // Add your code to apply for the drive here
+                        applyForDrive();
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // User clicked the "Cancel" button
+                        // You can add any handling for canceling the operation here
+                    }
+                })
+                .show();
+    }
+
+    public void applyForDrive(){
+//        Toast.makeText(this, docId,Toast.LENGTH_LONG ).show();
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
             String userId = currentUser.getUid();
@@ -114,7 +172,26 @@ public class DetailActivity extends AppCompatActivity {
                         public void onSuccess(Void aVoid) {
                             // The user's ID has been added to the "applicants" array.
                             // You can perform any additional actions here if needed.
-                            Toast.makeText(getApplicationContext(), "succssfully added", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "succssfully Applied", Toast.LENGTH_LONG).show();
+                            DocumentReference userDocumentRef = db.collection("users").document(userId);
+                            userDocumentRef.update("applied", FieldValue.arrayUnion(driveDocumentId))
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    // The driveDocumentId has been added to the "applied" array in the user's document.
+                                    Toast.makeText(getApplicationContext(), "User Updated", Toast.LENGTH_LONG).show();
+                                    Button applyButton = findViewById(R.id.button); // Replace with the ID of your button
+                                    applyButton.setText("Applied");
+                                    applyButton.setEnabled(false);
+                                }
+                            })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.e("Firestore", "Error updating user's applied array: " + e.getMessage());
+                                            Toast.makeText(getApplicationContext(), "Unsuccessful", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

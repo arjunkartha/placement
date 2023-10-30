@@ -2,6 +2,8 @@ package com.example.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import java.util.List;
+import java.util.Random;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder> {
 
@@ -32,6 +35,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
     @Override
     public void onBindViewHolder(@NonNull CardViewHolder holder, int position) {
         CardItem cardItem = cardItemList.get(position);
+
+        int randomColor = generateRandomColor();
+        holder.textViewAvatar.setBackgroundResource(R.drawable.round_background);
+        holder.textViewAvatar.getBackground().setColorFilter(randomColor, PorterDuff.Mode.SRC);
+
         holder.textViewTitle.setText(cardItem.getTitle());
         holder.textViewDescription.setText(cardItem.getDescription());
         holder.textViewAvatar.setText(cardItem.getFirstLetter());
@@ -68,5 +76,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
             textViewAvatar = itemView.findViewById(R.id.company_avatar);
 
         }
+    }
+
+    private int generateRandomColor() {
+        Random random = new Random();
+        return Color.argb(255, random.nextInt(150) + 120, random.nextInt(150) + 110, random.nextInt(150) + 120);
+
     }
 }

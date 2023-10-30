@@ -5,9 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardElevation="4dp"
+    app:cardElevation="2dp"
     app:cardCornerRadius="8dp"
-    android:layout_margin="5dp">
+    android:layout_marginLeft="2dp"
+    android:layout_marginRight="2dp"
+
+    android:layout_marginBottom="5dp">
 
 
     <!-- Your card content here -->
@@ -41,6 +44,7 @@
                     android:gravity="center"
                     android:text="A"
                     android:textColor="@color/white"
+                    android:fontFamily="@font/font_family"
                     android:layout_marginRight="10dp"/>
 
 
@@ -55,7 +59,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Card Title"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     android:fontFamily="@font/font_family"/>
 
@@ -64,7 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Card Description"
-                    android:textSize="16sp"
+                    android:textSize="12sp"
                     android:fontFamily="@font/font_family"/>
                 </LinearLayout>
             </LinearLayout>
