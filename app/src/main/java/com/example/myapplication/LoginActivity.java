@@ -123,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void goToRegister(){
-        Intent intent = new Intent(this, UserRegistration.class);
+        Intent intent = new Intent(LoginActivity.this, UserRegistration.class);
         startActivity(intent);
     }
 

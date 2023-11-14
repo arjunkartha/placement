@@ -120,7 +120,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Requirements"
-                android:textSize="10pt"
+                android:textSize="20dp"
 
                 android:textStyle="bold"
                 android:fontFamily="@font/font_family"/>

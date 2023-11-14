@@ -14,8 +14,8 @@ public class UserDetailActivity extends AppCompatActivity {
         // Retrieve user details from the intent
         String userName = getIntent().getStringExtra("userName");
         String userEmail = getIntent().getStringExtra("userEmail");
-        String userRole = getIntent().getStringExtra("userRole");
 
+        String userId = getIntent().getStringExtra("userId");
 
         // Find TextViews or other UI elements in the layout
         TextView userNameTextView = findViewById(R.id.userNameTextView);
@@ -26,7 +26,9 @@ public class UserDetailActivity extends AppCompatActivity {
         // Set the text in the UI elements
         userNameTextView.setText(userName);
         userEmailTextView.setText(userEmail);
-        userRoleTextView.setText(userRole);
+//        userRoleTextView.setText(userRole);
+
+
 
     }
 }

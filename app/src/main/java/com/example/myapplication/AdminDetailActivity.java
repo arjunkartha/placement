@@ -190,6 +190,9 @@ public class AdminDetailActivity extends AppCompatActivity {
                                                     String userEmail = userDocumentSnapshot.getString("email");
                                                     String userRole = userDocumentSnapshot.getString("role");
 
+//                                                    Toast.makeText(AdminDetailActivity.this,userName,Toast.LENGTH_LONG).show();
+//                                                    Toast.makeText(AdminDetailActivity.this,String.valueOf(userEmail),Toast.LENGTH_LONG).show();
+
 
                                                     if (userName != null && userEmail != null) {
                                                         TableRow row = new TableRow(AdminDetailActivity.this);
@@ -227,7 +230,7 @@ public class AdminDetailActivity extends AppCompatActivity {
                                                                 userDetailIntent.putExtra("userName", userName);
                                                                 userDetailIntent.putExtra("userEmail", userEmail);
                                                                 userDetailIntent.putExtra("userRole", userRole);
-
+                                                                userDetailIntent.putExtra("userId",applicantId);
                                                                 // Start the UserDetailActivity
                                                                 startActivity(userDetailIntent);
                                                             }
