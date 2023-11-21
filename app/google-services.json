@@ -1,37 +1,45 @@
 {
   "project_info": {
-    "project_number": "316298432396",
-    "firebase_url": "https://sb-placement-app-default-rtdb.firebaseio.com",
-    "project_id": "sb-placement-app",
-    "storage_bucket": "sb-placement-app.appspot.com"
+    "project_number": "176868162130",
+    "project_id": "placementcompanion-a18af",
+    "storage_bucket": "placementcompanion-a18af.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:316298432396:android:8f1c04d2112cdd1eb250a9",
+        "mobilesdk_app_id": "1:176868162130:android:f73fb382f4d4527bd43d8b",
         "android_client_info": {
-          "package_name": "com.example.myapplication"
+          "package_name": "com.example.placementcompanion"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "316298432396-boon947l53442s8eao302hrvb2qqf8rv.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyChYZwt8g73XOxXwdUmaJzrWbbDy2z__Ro"
+          "current_key": "AIzaSyDL8AvxtsitRvvF8mN6dJYTLWPxIbj3FdE"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "316298432396-boon947l53442s8eao302hrvb2qqf8rv.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:176868162130:android:9c4ab6a9465b4088d43d8b",
+        "android_client_info": {
+          "package_name": "com.example.test"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDL8AvxtsitRvvF8mN6dJYTLWPxIbj3FdE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
         }
       }
     }

@@ -1,13 +1,3 @@
 <resources>
-    <string name="app_name">My Application</string>
-    <string name="title_activity_navbar">Navbar</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-
-        <string-array name="job_types">
-            <item>Full Time</item>
-            <item>Part Time</item>
-        </string-array>
-
+    <string name="app_name">test</string>
 </resources>
