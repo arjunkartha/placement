@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Base64;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,12 +35,15 @@ import java.util.Map;
 
 
 public class UserRegistration extends AppCompatActivity {
-    EditText emailEditText, passwordEditText, fullNameEditText;
+    EditText emailEditText, passwordEditText, fullNameEditText, departmentText,tenthEditText,skillsEditText, degreeEditText, plusTwoEditText, pgdegreeEditText, phoneEditText,dobEditText;
     Button reg, choosePdfButton;
     Uri pdfUri;
     private FirebaseAuth mAuth;
     private static final int REQUEST_PDF_PICK = 1;
 
+
+    String email="" ;
+    String password="" ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +52,15 @@ public class UserRegistration extends AppCompatActivity {
         emailEditText = findViewById(R.id.email);
         passwordEditText = findViewById(R.id.pass);
         fullNameEditText = findViewById(R.id.fname);
+        departmentText = findViewById(R.id.dept);
+        degreeEditText = findViewById(R.id.degreeEditText);
+        pgdegreeEditText = findViewById(R.id.pgDegreeEditText);
+        plusTwoEditText = findViewById(R.id.plusTwoEditText);
+        tenthEditText = findViewById(R.id.tenthEditText);
+        skillsEditText = findViewById(R.id.skillsEditText);
+        phoneEditText = findViewById(R.id.phoneEditText);
+        dobEditText = findViewById(R.id.dob);
+
         reg = findViewById(R.id.registerButton);
         choosePdfButton = findViewById(R.id.choosePdfButton);
 
@@ -86,9 +100,33 @@ public class UserRegistration extends AppCompatActivity {
     }
 
     public void registerNewUser() {
-        String email = emailEditText.getText().toString();
-        String password = passwordEditText.getText().toString();
+       email = emailEditText.getText().toString();
+       password = passwordEditText.getText().toString();
+        // ... (your existing code)
+
+        // Email and password validation
+        if (TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            // Email is empty or not valid
+            Toast.makeText(getApplicationContext(), "Please enter a valid email address", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(password) || password.length() < 6) {
+            // Password is empty or less than 6 characters
+            Toast.makeText(getApplicationContext(), "Please enter a password with at least 6 characters", Toast.LENGTH_LONG).show();
+            return;
+        }
+         email = emailEditText.getText().toString();
+         password = passwordEditText.getText().toString();
         String fullName = fullNameEditText.getText().toString();
+        String department = departmentText.getText().toString();
+        String degree = degreeEditText.getText().toString();
+        String pgdegree = pgdegreeEditText.getText().toString();
+        String plustwo = plusTwoEditText.getText().toString();
+        String tenth = tenthEditText.getText().toString();
+        String skills = skillsEditText.getText().toString();
+        String phone = phoneEditText.getText().toString();
+        String dob =dobEditText.getText().toString();
 
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -103,7 +141,14 @@ public class UserRegistration extends AppCompatActivity {
                             userData.put("name", fullName);
                             userData.put("role", "student");
                             userData.put("email", email);
-
+                            userData.put("dept",department);
+                            userData.put("UGdegree",degree);
+                            userData.put("PGdegree",pgdegree);
+                            userData.put("plustwo",plustwo);
+                            userData.put("tenth",tenth);
+                            userData.put("skills",skills);
+                            userData.put("phone",phone);
+                            userData.put("dob",dob);
                             if (pdfUri != null) {
                                 // Store the PDF file in Firebase Storage
                                 FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -170,6 +215,12 @@ public class UserRegistration extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    public void gotosignin(View v){
+        Intent intent = new Intent(UserRegistration.this, LoginActivity.class);
+        finish();
+        startActivity(intent);
     }
 }
 

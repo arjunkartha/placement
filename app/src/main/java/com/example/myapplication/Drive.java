@@ -13,6 +13,11 @@ public class Drive {
 
     public String location;
 
+    public String minmark;
+
+    public String role;
+
+
 
 
     public Drive() {

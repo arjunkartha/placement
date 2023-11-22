@@ -5,5 +5,7 @@
     <color name="card_bottom_border_color">#CCCCCC</color>
     <color name="custom_action_bar_background">#FF5722</color>
     <color name="custom_action_bar_title_color">#FFFFFF</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="back">#F6F6F6</color>
 
 </resources>

@@ -220,7 +220,12 @@ public class MainActivity extends AppCompatActivity {
                     // Parse the data from Firestore and create CardItem objects
                     String documentId = document.getId();
                     String title = document.getString("cname");
-                    String description = document.getString("date");
+                    String date = document.getString("date");
+                    String location = document.getString("location");
+                    String jtime = document.getString("jtime");
+                    String sal = document.getString("salary");
+
+
                     String firstLetter = "";
 
                     if (title != null && !title.isEmpty()) {
@@ -229,7 +234,9 @@ public class MainActivity extends AppCompatActivity {
                         firstLetter = firstLetter.toUpperCase();
                     }
 
-                    CardItem cardItem = new CardItem(title, description, documentId, firstLetter);
+
+
+                    CardItem cardItem = new CardItem(title, date, firstLetter,location,jtime,sal,documentId);
                     cardItemList.add(cardItem);
                 }
 

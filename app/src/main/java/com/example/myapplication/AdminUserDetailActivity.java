@@ -1,7 +1,6 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -12,30 +11,35 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class UserDetailActivity extends AppCompatActivity {
-
-    BottomNavigationView bottomNavigationView;
+public class AdminUserDetailActivity extends AppCompatActivity {
     Button openPdfButton; // Button to open the PDF
 
-    String userEmail;
+    String userEmail, userDept,userPg, userUg, userPlus, usertenth, userSkills;
     String userName;
 
     String pdfData;
 
     String userId="";
 
+    TextView t1,t2,t3,t4,t5,t6,t7,t8;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_admin_user_detail);
+        t1 = findViewById(R.id.textView4);
+        t2 = findViewById(R.id.textView5);
+        t3 = findViewById(R.id.textView8);
+        t4 = findViewById(R.id.textView14);
+        t5 = findViewById(R.id.textView15);
+        t6 = findViewById(R.id.textView16);
+        t7 = findViewById(R.id.textView17);
+        t8 = findViewById(R.id.textView18);
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
         openPdfButton = findViewById(R.id.openPdfButton); // Initialize the button by its ID
 
         String userId = getIntent().getStringExtra("userId");
@@ -82,41 +86,28 @@ public class UserDetailActivity extends AppCompatActivity {
                         if (document.exists()) {
                             userEmail = document.getString("email");
                             userName = document.getString("name");
+                            userDept = document.getString("dept");
+                            userPg = document.getString("PGdegree");
+                            userUg = document.getString("UGdegree");
+                            userPlus = document.getString("plustwo");
+                            usertenth = document.getString("tenth");
+                            userSkills = document.getString("skills");
+
                             pdfData = document.getString("pdfData");
+
+                            t1.setText(userName);
+                            t2.setText(userEmail);
+                            t3.setText(userDept);
+                            t4.setText(userUg);
+                            t5.setText(userPg);
+                            t6.setText(userPlus);
+                            t7.setText(usertenth);
+                            t8.setText(userSkills);
                             // You can use userEmail and userName as needed
                         }
 
                     }
                 });
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-            int itemId = item.getItemId();
-            if (itemId == R.id.navigation_home) {
-                // Load the Home fragment or activity
-                loadFragment(new HomeFragment());
-                return true;
-                // } else if (itemId == R.id.navigation_dashboard) {
-                // Load the Dashboard fragment or activity
-                // loadFragment(new DashboardFragment());
-                // return true;
-            } else if (itemId == R.id.profile) {
-                // Load the Notifications fragment or activity
-                loadFragment(new ProfileFragment());
-                return true;
-            }
-
-            return false;
-        });
-
-
-
-
     }
-
-    private void loadFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, fragment)
-                .commit();
-    }
-
 }

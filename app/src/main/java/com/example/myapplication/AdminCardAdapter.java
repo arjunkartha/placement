@@ -41,12 +41,14 @@ public class AdminCardAdapter extends RecyclerView.Adapter<AdminCardAdapter.Card
         holder.textViewAvatar.setBackgroundResource(R.drawable.round_background);
         holder.textViewAvatar.getBackground().setColorFilter(randomColor, PorterDuff.Mode.SRC);
 
-        // Set other data for the card item
         holder.textViewTitle.setText(cardItem.getTitle());
-        holder.textViewDescription.setText(cardItem.getDescription());
+        holder.textViewDate.setText(cardItem.getDate());
         holder.textViewAvatar.setText(cardItem.getFirstLetter());
 
-      
+        holder.textViewLocation.setText(cardItem.getLocation());
+
+        holder.texViewJtime.setText(cardItem.getJtime());
+        holder.textViewSalary.setText(cardItem.getSalary());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +57,7 @@ public class AdminCardAdapter extends RecyclerView.Adapter<AdminCardAdapter.Card
                 Intent intent = new Intent(context, AdminDetailActivity.class);
                 intent.putExtra("title", cardItem.getTitle());
                 intent.putExtra("documentId", cardItem.getDocumentId());
-                intent.putExtra("description", cardItem.getDescription());
+
                 context.startActivity(intent);
             }
         });
@@ -68,14 +70,20 @@ public class AdminCardAdapter extends RecyclerView.Adapter<AdminCardAdapter.Card
 
     public class CardViewHolder extends RecyclerView.ViewHolder {
         TextView textViewTitle;
-        TextView textViewDescription;
         TextView textViewAvatar;
+        TextView textViewLocation;
+        TextView textViewDate;  // Add this line
+        TextView texViewJtime;
+        TextView textViewSalary;
 
         public CardViewHolder(View itemView) {
             super(itemView);
             textViewTitle = itemView.findViewById(R.id.textViewTitle);
-            textViewDescription = itemView.findViewById(R.id.textViewDescription);
             textViewAvatar = itemView.findViewById(R.id.company_avatar);
+            textViewLocation = itemView.findViewById(R.id.textViewLocation);
+            textViewDate = itemView.findViewById(R.id.textViewDate);  // Add this line
+            texViewJtime = itemView.findViewById(R.id.texViewJtime);
+            textViewSalary = itemView.findViewById(R.id.textViewSalary);
         }
     }
 

@@ -19,7 +19,7 @@ public class HomeFragment extends Fragment {
 
 
         Intent intent = new Intent(getActivity(), MainActivity.class);
-
+        getActivity().finish();
         // Start the MainActivity
         startActivity(intent);
         // Add your logic for the HomeFragment here

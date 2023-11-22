@@ -1,31 +1,402 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
 
-    <Button
-        android:id="@+id/openPdfButton"
-        android:layout_width="wrap_content"
+    <!-- ... Existing layout code ... -->
+
+    <!-- Edit Button -->
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Open PDF in External Viewer" />
-   
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+
+    <!-- Cover Image and User Icon Container -->
+    <FrameLayout
+        android:id="@+id/coverContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
+
+        <!-- Cover Image -->
+
+        <!-- User Icon -->
+        <ImageView
+            android:id="@+id/coverImage"
+            android:layout_width="match_parent"
+            android:layout_height="370dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/cover" />
+        <Button
+            android:id="@+id/editActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="end"
+            android:text="Edit"
+            android:textColor="#FFFFFF"
+            android:background="@color/transparent"
+            />
+
+        <ImageView
+            android:id="@+id/userIcon"
+            android:layout_width="303dp"
+            android:layout_height="186dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+
+            android:src="@drawable/user_icon" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="90dp"
+            android:fontFamily="@font/font_family"
+            android:text="Username"
+            android:textSize="24dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/textemail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="center"
+            android:layout_marginTop="120dp"
+            android:fontFamily="@font/font_family"
+            android:text="useremail@gmail.com"
+            android:textSize="13dp"
+            android:textColor="@color/white"
+            android:layout_centerHorizontal="true"/>
+
+
+        <Button
+            android:id="@+id/openPdfButton"
+            android:layout_width="213dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="160dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/transparent"
+            android:drawableEnd="@drawable/file_icon"
+            android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:fontFamily="@font/font_family"
+        android:text="View Resume" />
+
+
+
+    </FrameLayout>
+
+    <!-- User Profile Section -->
+    <RelativeLayout
+        android:id="@+id/userProfileSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/coverContainer"
+        android:layout_centerHorizontal="true">
+
+        <!-- Username TextView -->
+
+
+        <!-- Email TextView -->
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/headingsPersonalSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userProfileSection"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/prsDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Personal Info"
+            android:textSize="18dp"
+            android:fontFamily="@font/font_family"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/coverContainer"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="4dp"
+            android:text="user@example.com" />
+
+        <TextView
+            android:id="@+id/dob"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView7"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="4dp"
+            android:text="date of birth" />
+
+        <TextView
+            android:id="@+id/phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView7"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="4dp"
+            android:text="phone no" />
+    </LinearLayout>
+
+    <!-- Headings and Texts Section -->
+    <LinearLayout
+        android:id="@+id/headingsTextsSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/headingsPersonalSection"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        android:layout_margin="20dp">
+
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Educational Info"
+            android:layout_marginBottom="8dp"
+            android:textSize="18dp"
+            android:fontFamily="@font/font_family"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:id="@+id/headingLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/textViewCollegeTitle"
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textView7"
+                android:textStyle="bold"
+                android:text="College" />
+            <TextView
+                android:id="@+id/college"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:fontFamily="@font/font_family"
+                android:textAlignment="textEnd"
+                android:layout_weight="1"
+                android:text="Saintgits College of Engineering"/>
+        </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/heading0Layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/textView8Title"
+            android:layout_width="115dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView7"
+            android:textStyle="bold"
+            android:text="Department" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="200dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/font_family"
+            android:text="MCA"
+            android:textAlignment="textEnd" />
+    </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/heading1Layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/heading1"
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:text="PG Degree"
+                android:fontFamily="@font/font_family"
+
+                android:textStyle="bold"/>
+
+            <!-- Adjust the layout parameters as needed -->
+            <TextView
+                android:id="@+id/pgmark"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="200dp"
+                android:fontFamily="@font/font_family"
+                android:textAlignment="textEnd"
+                android:layout_weight="1"
+                android:text="1"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/heading3Layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/heading3"
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:text="UG Degree"
+                android:textStyle="bold"
+                android:fontFamily="@font/font_family"
+                />
+
+            <!-- Adjust the layout parameters as needed -->
+            <TextView
+                android:id="@+id/ugmark"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="200dp"
+                android:text="2"
+                android:textAlignment="textEnd"
+                android:fontFamily="@font/font_family"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/heading4Layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+           >
+
+
+            <TextView
+                android:id="@+id/heading4"
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_family"
+
+                android:text="+2"
+                android:textStyle="bold" />
+
+            <!-- Adjust the layout parameters as needed -->
+            <TextView
+                android:id="@+id/plustwomark"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="200dp"
+                android:fontFamily="@font/font_family"
+                android:textAlignment="textEnd"
+                android:text="2"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/heading2Layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/heading2"
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:text="Tenth"
+                android:fontFamily="@font/font_family"
+
+                android:textStyle="bold" />
+
+            <!-- Adjust the layout parameters as needed -->
+            <TextView
+                android:id="@+id/tenthmark"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="200dp"
+                android:fontFamily="@font/font_family"
+                android:textAlignment="textEnd"
+                android:text="2"/>
+        </LinearLayout>
+
+        <!-- Repeat the above pattern for heading3 and text3 -->
+
+        <!-- Repeat the above pattern for heading4 and text4 -->
+
+    </LinearLayout>
+
+    <!-- Buttons Section -->
+    <LinearLayout
+        android:id="@+id/buttonsSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/headingsTextsSection"
+        android:paddingLeft="20dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Applied drives"
+            android:fontFamily="@font/font_family"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"
+            android:textSize="18dp"/>
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="396dp"
+            android:layout_height="646dp"
+            android:layout_marginLeft="-14dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView20"
+            tools:layout_editor_absoluteX="15dp" />
+
+
+    </LinearLayout>
+    </LinearLayout>
+</ScrollView>
+    <!-- Edit Button -->
+
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_alignParentBottom="true"
         app:menu="@menu/bottom_navigation_menu" />
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-        android:layout_gravity="start|top" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

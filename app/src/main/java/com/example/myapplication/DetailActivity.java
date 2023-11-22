@@ -32,6 +32,8 @@ import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
     String docId = "";
+
+    String tenth="",plustwo="",ugdegree="",pgscore="",minmark="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,8 +68,11 @@ public class DetailActivity extends AppCompatActivity {
                                 String time = document.getString("jtime");
                                 String location = document.getString("location");
                                 String requirements = document.getString("req");
+                                String role = document.getString("role");
 
+                                minmark = document.getString("minmark");
 
+                                TextView textViewRole = findViewById(R.id.textViewRoleDetail);
                                 TextView textViewTitle = findViewById(R.id.textViewTitleDetail);
                                 TextView textViewDate = findViewById(R.id.textViewDate);
                                 TextView textViewDescription = findViewById(R.id.textViewDescriptionDetail);
@@ -76,13 +81,17 @@ public class DetailActivity extends AppCompatActivity {
                                 TextView t2 = (TextView)findViewById(R.id.t2);
                                 TextView t3 = (TextView)findViewById(R.id.t3);
                                 TextView req = (TextView) findViewById(R.id.requirements);
-                                textViewTitle.setText(title);
+                                TextView markreq = (TextView) findViewById(R.id.markReq);
+
+                                textViewRole.setText(role);
+                                textViewTitle.setText("at "+title);
                                 textViewDate.setText(date);
                                 textViewDescription.setText(description);
                                 t1.setText(salary);
                                 t2.setText(time);
                                 t3.setText(location);
                                 req.setText(requirements);
+                                markreq.setText(minmark);
                                 // Load and display the image using Glide
                                 if (imageUrl != null && !imageUrl.isEmpty()) {
                                     Glide.with(DetailActivity.this)
@@ -120,6 +129,11 @@ public class DetailActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
+                         pgscore = document.getString("PGdegree");
+                         ugdegree = document.getString("UGdegree");
+                         plustwo = document.getString("plustwo");
+                         tenth = document.getString("tenth");
+
                         // User document exists, check if "applied" array contains the driveDocumentId
                         if (document.contains("applied")) {
                             List<String> appliedList = (List<String>) document.get("applied");
@@ -136,23 +150,65 @@ public class DetailActivity extends AppCompatActivity {
         });
     }
     public void applyDrive(View v) {
-        new AlertDialog.Builder(this)
-                .setTitle("Apply Confirmation")
-                .setMessage("Are you sure you want to apply for this drive?")
-                .setPositiveButton("Apply", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        // User clicked the "Apply" button
-                        // Add your code to apply for the drive here
-                        applyForDrive();
-                    }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        // User clicked the "Cancel" button
-                        // You can add any handling for canceling the operation here
-                    }
-                })
-                .show();
+        int pgscoreValue = Integer.parseInt(pgscore);
+        int ugdegreeValue = Integer.parseInt(ugdegree);
+        int plustwoValue = Integer.parseInt(plustwo);
+        int tenthValue = Integer.parseInt(tenth);
+        int minmarkValue = Integer.parseInt(minmark);
+        if(Integer.parseInt(pgscore) >= Integer.parseInt(minmark) && Integer.parseInt(ugdegree) >= Integer.parseInt(minmark) && Integer.parseInt(plustwo) >= Integer.parseInt(minmark) && Integer.parseInt(tenth) >= Integer.parseInt(minmark)){
+            new AlertDialog.Builder(this)
+                    .setTitle("Apply Confirmation")
+                    .setMessage("Are you sure you want to apply for this drive?")
+                    .setPositiveButton("Apply", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // User clicked the "Apply" button
+                            // Add your code to apply for the drive here
+                            applyForDrive();
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // User clicked the "Cancel" button
+                            // You can add any handling for canceling the operation here
+                        }
+                    })
+                    .show();
+        }else{
+            String errorMessage = "Sorry, you are not eligible for this drive because ";
+
+            if (pgscoreValue < minmarkValue) {
+                errorMessage += "your PGScore is " + pgscoreValue + " and it should be at least " + minmarkValue + ". ";
+            }
+
+            if (ugdegreeValue < minmarkValue) {
+                errorMessage += "your UG Degree score is " + ugdegreeValue + " and it should be at least " + minmarkValue + ". ";
+            }
+
+            if (plustwoValue < minmarkValue) {
+                errorMessage += "your Plus Two score is " + plustwoValue + " and it should be at least " + minmarkValue + ". ";
+            }
+
+            if (tenthValue < minmarkValue) {
+                errorMessage += "your Tenth score is " + tenthValue + " and it should be at least " + minmarkValue + ". ";
+            }
+            new AlertDialog.Builder(this)
+                    .setTitle("Apply Confirmation")
+                    .setMessage(errorMessage)
+                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // User clicked the "Ok" button
+                            // You can add any handling for the "Ok" button here
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // User clicked the "Cancel" button
+                            // You can add any handling for canceling the operation here
+                        }
+                    })
+                    .show();
+        }
+
     }
 
     public void applyForDrive(){

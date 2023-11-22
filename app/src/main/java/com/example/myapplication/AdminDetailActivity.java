@@ -225,7 +225,7 @@ public class AdminDetailActivity extends AppCompatActivity {
                                                             @Override
                                                             public void onClick(View view) {
                                                                 // When the row is clicked, launch the UserDetailActivity
-                                                                Intent userDetailIntent = new Intent(AdminDetailActivity.this, UserDetailActivity.class);
+                                                                Intent userDetailIntent = new Intent(AdminDetailActivity.this, AdminUserDetailActivity.class);
                                                                 // Pass user details to the UserDetailActivity
                                                                 userDetailIntent.putExtra("userName", userName);
                                                                 userDetailIntent.putExtra("userEmail", userEmail);

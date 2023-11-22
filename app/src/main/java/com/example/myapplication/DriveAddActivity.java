@@ -30,7 +30,7 @@ public class DriveAddActivity extends AppCompatActivity {
     private TextInputEditText salInput;
     private TextInputEditText imgInput;
 
-    private TextInputEditText locationInput;
+    private TextInputEditText locationInput, minmark, role;
 
 
     private Button datePickerButton;
@@ -95,6 +95,9 @@ public class DriveAddActivity extends AppCompatActivity {
         salInput = findViewById(R.id.sal);
         imgInput = findViewById(R.id.img);
         locationInput = findViewById(R.id.locationField);
+        minmark = findViewById(R.id.mark);
+        role = findViewById(R.id.role);
+
 
 
         // Initialize "Add Drive" button and set its click listener
@@ -111,6 +114,8 @@ public class DriveAddActivity extends AppCompatActivity {
                 String salary = salInput.getText().toString();
                 String imageUrl = imgInput.getText().toString();
                 String location = locationInput.getText().toString();
+                String cut_off = minmark.getText().toString();
+                String position = role.getText().toString();
 
                 // Create a Drive object
                 Drive drive = new Drive();
@@ -123,6 +128,8 @@ public class DriveAddActivity extends AppCompatActivity {
                 drive.image = imageUrl;
                 drive.location = location;
                 drive.jtime = selectedJobType;
+                drive.minmark=cut_off;
+                drive.role=position;
 
                 // Add the Drive object to the "drives" collection with an auto-generated document ID
                 DocumentReference documentReference = db.collection("drives").document();

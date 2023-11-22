@@ -1,79 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardElevation="2dp"
-    app:cardCornerRadius="8dp"
     android:layout_marginLeft="2dp"
     android:layout_marginRight="2dp"
+    android:layout_marginBottom="14dp">
 
-    android:layout_marginBottom="5dp">
+    <!-- CardView -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardElevation="2dp"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-
-    <!-- Your card content here -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="10dp">
-
+        <!-- Your card content here -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            tools:ignore="UselessParent">
+            android:layout_height="150dp"
+            android:orientation="vertical"
+            android:padding="10dp">
 
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+            <!-- Inner LinearLayout 1 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="128dp"
+                android:layout_gravity="center_vertical"
                 android:orientation="horizontal"
+                tools:ignore="UselessParent">
 
-                >
-
+                <!-- Avatar TextView -->
                 <TextView
                     android:id="@+id/company_avatar"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_weight="1"
+                    android:layout_marginRight="10dp"
                     android:background="@drawable/round_background"
+                    android:fontFamily="@font/font_family"
                     android:gravity="center"
                     android:text="A"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/font_family"
-                    android:layout_marginRight="10dp"/>
+                    android:textColor="@color/white" />
+
+                <!-- Inner LinearLayout 2 -->
 
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/textViewLocation"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginEnd="10dp"
+                    android:fontFamily="@font/font_family"
+                    android:text="Card Description"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textViewTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="7dp"
+                    android:fontFamily="@font/font_family"
                     android:text="Card Title"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:fontFamily="@font/font_family"/>
+                    app:layout_constraintStart_toEndOf="@+id/company_avatar"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!--                <TextView-->
+<!--                    android:id="@+id/textViewsalary"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="56dp"-->
+<!--                    android:layout_marginTop="23dp"-->
+<!--                    android:fontFamily="@font/font_family"-->
+<!--                    android:text="Card Description"-->
+<!--                    android:textSize="14dp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/textViewJtype" />-->
 
                 <TextView
-                    android:id="@+id/textViewDescription"
+                    android:id="@+id/texViewJtime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="11dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/border_outline"
+                    android:fontFamily="@font/font_family"
                     android:text="Card Description"
                     android:textSize="12sp"
-                    android:fontFamily="@font/font_family"/>
-                </LinearLayout>
-            </LinearLayout>
+                    app:layout_constraintStart_toEndOf="@+id/textViewDate"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
+
+                <TextView
+                    android:id="@+id/textViewDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/border_outline"
+                    android:fontFamily="@font/font_family"
+                    android:text="Card Description"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toEndOf="@+id/company_avatar"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
+
+
+                <TextView
+                    android:id="@+id/textViewSalary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginTop="22dp"
+                    android:fontFamily="@font/font_family"
+                    android:text="Salary"
+                    android:textSize="14dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewDate" />
+
+                <TextView
+                    android:id="@+id/apply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="21dp"
+                    android:layout_marginEnd="14dp"
+                    android:drawableEnd="@drawable/arrow_blue"
+                    android:fontFamily="@font/font_family"
+                    android:text="Apply Now"
+                    android:textColor="#007AFF"
+                    android:textSize="14dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/texViewJtime" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </LinearLayout>
-
-
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

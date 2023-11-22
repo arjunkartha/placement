@@ -46,9 +46,17 @@ public class AdminHomeActivity extends AppCompatActivity {
 
     }
 
+
     public void addDrive(View v){
         Intent addIntent = new Intent(AdminHomeActivity.this, DriveAddActivity.class);
         startActivity(addIntent);
+    }
+
+
+    public void signout(View v){
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(AdminHomeActivity.this,LoginActivity.class);
+        startActivity(intent);
     }
 
 
@@ -84,9 +92,15 @@ public class AdminHomeActivity extends AppCompatActivity {
                     // Parse the data from Firestore and create CardItem objects
                     String documentId = document.getId();
                     String title = document.getString("cname");
-                    String description = document.getString("date");
+
                     String firstLetter = "";
                     String imageUrl = document.getString("image");
+
+
+                    String date = document.getString("date");
+                    String location = document.getString("location");
+                    String jtime = document.getString("jtime");
+                    String sal = document.getString("salary");
 
                     if (title != null && !title.isEmpty()) {
                         // Check if the title is not empty
@@ -95,7 +109,7 @@ public class AdminHomeActivity extends AppCompatActivity {
                     }
 
 
-                    CardItem cardItem = new CardItem(title, description, documentId, firstLetter);
+                    CardItem cardItem = new CardItem(title, date, firstLetter,location,jtime,sal, documentId);
                     cardItemList.add(cardItem);
                 }
 
