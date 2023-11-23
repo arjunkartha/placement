@@ -67,6 +67,7 @@
                 android:text="TextView 1"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
+                android:drawableStart="@drawable/cash_icon"
 
                 android:textSize="16sp"
                 android:background="@drawable/detail_tag_outline"
@@ -84,6 +85,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
                 android:textSize="16sp"
+                android:drawableStart="@drawable/time_icon"
                 android:background="@drawable/detail_tag_outline"
                 android:fontFamily="@font/font_family"/>
 
@@ -97,6 +99,8 @@
                 android:text="TextView 3"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
+                android:drawableStart="@drawable/location_icon"
+
                 android:background="@drawable/detail_tag_outline"
                 android:textSize="16sp"
                 android:fontFamily="@font/font_family"/>

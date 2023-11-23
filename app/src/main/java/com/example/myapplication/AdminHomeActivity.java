@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -44,6 +45,8 @@ public class AdminHomeActivity extends AppCompatActivity {
 
         fetchDataFromFirestore();
 
+
+
     }
 
 
@@ -68,9 +71,8 @@ public class AdminHomeActivity extends AppCompatActivity {
             // You can show a login screen or take appropriate action here
             return;
         }
-        Toast.makeText(getApplicationContext(), String.valueOf(user.getEmail()), Toast.LENGTH_LONG).show();
-        // User is authenticated, proceed with fetching data
-        // Initialize Firebase Firestore
+//        Toast.makeText(getApplicationContext(), String.valueOf(user.getEmail()), Toast.LENGTH_LONG).show();
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         // Reference to the Firestore collection where your data is stored

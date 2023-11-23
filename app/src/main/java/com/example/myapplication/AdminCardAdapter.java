@@ -20,6 +20,8 @@ public class AdminCardAdapter extends RecyclerView.Adapter<AdminCardAdapter.Card
     private List<CardItem> cardItemList;
     private Context context;
 
+
+
     public AdminCardAdapter(List<CardItem> cardItemList, Context context) {
         this.cardItemList = cardItemList;
         this.context = context;
@@ -30,6 +32,7 @@ public class AdminCardAdapter extends RecyclerView.Adapter<AdminCardAdapter.Card
     public CardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_item, parent, false);
         return new CardViewHolder(view);
+
     }
 
     @Override
@@ -75,6 +78,7 @@ public class AdminCardAdapter extends RecyclerView.Adapter<AdminCardAdapter.Card
         TextView textViewDate;  // Add this line
         TextView texViewJtime;
         TextView textViewSalary;
+        TextView applyButton;
 
         public CardViewHolder(View itemView) {
             super(itemView);
@@ -84,6 +88,10 @@ public class AdminCardAdapter extends RecyclerView.Adapter<AdminCardAdapter.Card
             textViewDate = itemView.findViewById(R.id.textViewDate);  // Add this line
             texViewJtime = itemView.findViewById(R.id.texViewJtime);
             textViewSalary = itemView.findViewById(R.id.textViewSalary);
+
+            applyButton = itemView.findViewById(R.id.apply);
+            applyButton.setText("View Details");
+//            applyButton.setVisibility(View.INVISIBLE);
         }
     }
 

@@ -35,7 +35,7 @@ import java.util.Map;
 
 
 public class UserRegistration extends AppCompatActivity {
-    EditText emailEditText, passwordEditText, fullNameEditText, departmentText,tenthEditText,skillsEditText, degreeEditText, plusTwoEditText, pgdegreeEditText, phoneEditText,dobEditText;
+    EditText emailEditText, passwordEditText, fullNameEditText, departmentText,tenthEditText,skillsEditText, degreeEditText, plusTwoEditText, pgdegreeEditText, phoneEditText,dobEditText, collegeEditText;
     Button reg, choosePdfButton;
     Uri pdfUri;
     private FirebaseAuth mAuth;
@@ -60,6 +60,7 @@ public class UserRegistration extends AppCompatActivity {
         skillsEditText = findViewById(R.id.skillsEditText);
         phoneEditText = findViewById(R.id.phoneEditText);
         dobEditText = findViewById(R.id.dob);
+        collegeEditText = findViewById(R.id.college);
 
         reg = findViewById(R.id.registerButton);
         choosePdfButton = findViewById(R.id.choosePdfButton);
@@ -127,7 +128,7 @@ public class UserRegistration extends AppCompatActivity {
         String skills = skillsEditText.getText().toString();
         String phone = phoneEditText.getText().toString();
         String dob =dobEditText.getText().toString();
-
+        String college = collegeEditText.getText().toString();
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -149,6 +150,7 @@ public class UserRegistration extends AppCompatActivity {
                             userData.put("skills",skills);
                             userData.put("phone",phone);
                             userData.put("dob",dob);
+                            userData.put("college",college);
                             if (pdfUri != null) {
                                 // Store the PDF file in Firebase Storage
                                 FirebaseStorage storage = FirebaseStorage.getInstance();

@@ -30,14 +30,14 @@ public class ProfileActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     Button openPdfButton; // Button to open the PDF
 
-    String userEmail, userDept,userPg, userUg, userPlus, usertenth, userskills, userDob, userMob;
+    String userEmail, userDept,userPg, userUg, userPlus, usertenth, userskills, userDob, userMob, userCollege;
     String userName;
 
     String pdfData;
 
     String userId="";
 
-    TextView t1, t2, t3, t4, t5, t6, t7, t8, t9, t10;
+    TextView t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11;
 
     int totalDrives = 0;
     int completedDrives = 0;
@@ -60,6 +60,7 @@ public class ProfileActivity extends AppCompatActivity {
         t8 = findViewById(R.id.dob);
         t9 = findViewById(R.id.phone);
         t10 = findViewById(R.id.textemail);
+        t11 = findViewById(R.id.college);
 
         Button editActionButton = findViewById(R.id.editActionButton);
 
@@ -153,7 +154,7 @@ public class ProfileActivity extends AppCompatActivity {
                             userskills = userDocument.getString("skills");
                             userDob = userDocument.getString("dob");
                             userMob = userDocument.getString("phone");
-
+                            userCollege = userDocument.getString("college");
                             t1.setText(userName);
                             t2.setText(userEmail);
                             t7.setText(userDept);
@@ -164,6 +165,7 @@ public class ProfileActivity extends AppCompatActivity {
                             t8.setText(userDob);
                             t9.setText(userMob);
                             t10.setText(userEmail);
+                            t11.setText(userCollege);
                             // You can use userEmail and userName as needed
 
                             List<String> driveIds = (List<String>) userDocument.get("applied");
@@ -278,6 +280,7 @@ public class ProfileActivity extends AppCompatActivity {
                 editProfileIntent.putExtra("skills", userskills);
                 editProfileIntent.putExtra("dob",userDob);
                 editProfileIntent.putExtra("phone",userMob);
+                editProfileIntent.putExtra("college",userCollege);
 
                 // Start the EditProfileActivity
                 startActivity(editProfileIntent);

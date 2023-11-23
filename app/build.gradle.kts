@@ -48,6 +48,11 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
     implementation("com.google.firebase:firebase-storage:20.3.0")
+    implementation("org.apache.poi:poi:3.12")
+    implementation("org.apache.poi:poi-ooxml:3.12")
+    implementation("org.apache.xmlbeans:xmlbeans:5.0.1")
+    implementation(files("libs/jxl.jar"))
+
     testImplementation("junit:junit:4.13.2")
     annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

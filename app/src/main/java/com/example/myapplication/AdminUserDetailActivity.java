@@ -19,26 +19,28 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class AdminUserDetailActivity extends AppCompatActivity {
     Button openPdfButton; // Button to open the PDF
 
-    String userEmail, userDept,userPg, userUg, userPlus, usertenth, userSkills;
+    String userEmail, userDept,userPg, userUg, userPlus, usertenth, userSkills ,userDob, userMob;
     String userName;
 
     String pdfData;
 
     String userId="";
 
-    TextView t1,t2,t3,t4,t5,t6,t7,t8;
+    TextView t1,t2,t3,t4,t5,t6,t7,t8, t9, t10;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_user_detail);
-        t1 = findViewById(R.id.textView4);
-        t2 = findViewById(R.id.textView5);
-        t3 = findViewById(R.id.textView8);
-        t4 = findViewById(R.id.textView14);
-        t5 = findViewById(R.id.textView15);
-        t6 = findViewById(R.id.textView16);
-        t7 = findViewById(R.id.textView17);
-        t8 = findViewById(R.id.textView18);
+        t1 = findViewById(R.id.textView6);
+        t2 = findViewById(R.id.textView7);
+        t3 = findViewById(R.id.pgmark);
+        t4 = findViewById(R.id.ugmark);
+        t5 = findViewById(R.id.plustwomark);
+        t6 = findViewById(R.id.tenthmark);
+        t7 = findViewById(R.id.textView8);
+        t8 = findViewById(R.id.dob);
+        t9 = findViewById(R.id.phone);
+        t10 = findViewById(R.id.textemail);
 
         openPdfButton = findViewById(R.id.openPdfButton); // Initialize the button by its ID
 
@@ -93,16 +95,24 @@ public class AdminUserDetailActivity extends AppCompatActivity {
                             usertenth = document.getString("tenth");
                             userSkills = document.getString("skills");
 
-                            pdfData = document.getString("pdfData");
+
+
+                            userDob = document.getString("dob");
+                            userMob = document.getString("phone");
 
                             t1.setText(userName);
                             t2.setText(userEmail);
-                            t3.setText(userDept);
+                            t7.setText(userDept);
+                            t3.setText(userPg);
                             t4.setText(userUg);
-                            t5.setText(userPg);
-                            t6.setText(userPlus);
-                            t7.setText(usertenth);
-                            t8.setText(userSkills);
+                            t5.setText(userPlus);
+                            t6.setText(usertenth);
+                            t8.setText(userDob);
+                            t9.setText(userMob);
+                            t10.setText(userEmail);
+
+                            pdfData = document.getString("pdfData");
+
                             // You can use userEmail and userName as needed
                         }
 

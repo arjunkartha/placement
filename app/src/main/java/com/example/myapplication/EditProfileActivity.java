@@ -28,7 +28,7 @@ public class EditProfileActivity extends AppCompatActivity {
     EditText plusEditText;
     EditText tenthEditText;
     EditText dept;
-    EditText skillEditText, phoneEditText;
+    EditText skillEditText, phoneEditText, collegeEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +43,7 @@ public class EditProfileActivity extends AppCompatActivity {
         dept = findViewById(R.id.dept);
         skillEditText = findViewById(R.id.skillsEditText);
         phoneEditText = findViewById(R.id.phone);
+        collegeEditText = findViewById(R.id.college);
         Button pdfChooser = findViewById(R.id.choosePdfButton);
 
         Intent intent = getIntent();
@@ -57,6 +58,7 @@ public class EditProfileActivity extends AppCompatActivity {
         String tenth = intent.getStringExtra("tenth");
         String skills = intent.getStringExtra("skills");
         String phone = intent.getStringExtra("phone");
+        String college = intent.getStringExtra("college");
 
 
         userId = userid;
@@ -69,7 +71,7 @@ public class EditProfileActivity extends AppCompatActivity {
         dept.setText(userdept);
         skillEditText.setText(skills);
         phoneEditText.setText(phone);
-
+        collegeEditText.setText(college);
         pdfChooser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,7 +114,8 @@ public class EditProfileActivity extends AppCompatActivity {
                             "tenth", tenthEditText.getText().toString(),
                             "dept", dept.getText().toString(),
                             "skills", skillEditText.getText().toString(),
-                            "phone", phoneEditText.getText().toString()
+                            "phone", phoneEditText.getText().toString(),
+                            "college",collegeEditText.getText().toString()
 
                     )
                     .addOnSuccessListener(aVoid -> {
